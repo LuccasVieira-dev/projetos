@@ -1,16 +1,15 @@
-#acredito que seja auto explicativo sobre oque é este código, não execute de forma alguma no seu computador se você não sabe oque está fazendo
-#não me responsabilizo a qualquer dano causado
-#roleta russa hihihi
+#acredito que seja auto explicativo sobre oque é este código, não execute de forma alguma no seu computador se você não sabe oque está fazendo (não me responsabilizo a qualquer dano causado).
+#hihihihi
 
 import os
 import random
 import time
 
 while True:
-    print('Roleta russa em python, você tem 6 tentativas e uma delas pode destruir teu computador, será que você consegue concluir o jogo?')
+    print('Roleta russa em python, você tem 6 tentativas e uma delas pode destruir teu computador, você consegue concluir o jogo?')
     escolha = input('Você deseja jogar? (s/n) ')
     if escolha == 'n':
-        print('Ok, a escolha é sua')
+        print('Fechando o jogo...')
         exit()
     elif escolha != 's':
         print('Digite apenas s ou n!')
@@ -40,12 +39,12 @@ while True:
             while True:
                 tentar = input('Tentar denovo? (s/n) ')
                 if tentar == 'n':
-                    print('Ok, a escolha é sua')
+                    print('Fechando o jogo...')
                     exit()
                 elif tentar == 's':
                     break
                 else:
                     print('Digite apenas s ou n!')
 
-    print('Você sobreviveu às 6 tentativas! Sortudo desgraçado')
+    print('Você sobreviveu às 6 tentativas!')
     exit()
