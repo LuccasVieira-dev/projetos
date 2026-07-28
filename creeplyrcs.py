@@ -1,4 +1,4 @@
-#apenas um código estúpido que roda creep, se você quer que funcione baixa o exe em releases, esse aqui é só o código fonte
+#código simples que roda Creep do Radiohead e mostra a letra, se você quer que funcione é só baixar o .exe em releases, esse aqui é apenas o código fonte
 
 import sys
 import os
