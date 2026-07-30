@@ -1,4 +1,4 @@
-#código simples que roda Creep do Radiohead e mostra a letra, se você quer que funcione é só baixar o .exe em releases, esse aqui é apenas o código fonte
+# código simples que roda Creep do Radiohead e mostra a letra
 
 import sys
 import os
@@ -22,37 +22,31 @@ pygame.mixer.music.play()
 # Criar janela Tkinter
 janela = tk.Tk()
 janela.geometry("500x400")
+janela.resizable(False, False)
 janela.title("Creep - Radiohead")
 janela.eval('tk::PlaceWindow . center')
 
-# Carregar imagem base
-img_base = Image.open(fundo_path)
+# Carregar imagem de fundo no tamanho da janela
+img_base = Image.open(fundo_path).resize((500, 400))
+foto = ImageTk.PhotoImage(img_base)
 
 # Label para o fundo
-label_fundo = tk.Label(janela)
+label_fundo = tk.Label(janela, image=foto)
 label_fundo.place(x=0, y=0, relwidth=1, relheight=1)
 
-# Função para redimensionar o fundo automaticamente
-def redimensionar(event=None):
-    largura, altura = janela.winfo_width(), janela.winfo_height()
-    foto = ImageTk.PhotoImage(img_base.resize((largura, altura)))
-    label_fundo.config(image=foto)
-    label_fundo.image = foto  # mantém referência
-
-janela.bind("<Configure>", redimensionar)
-
 # Label central para mostrar a letra
-label = tk.Label(janela, font=("Arial", 25, "italic"), fg="white", bg="black")
-label.place(relx=0.5, rely=0.5, anchor="center")  # centralizado
-
-# Assinatura no canto inferior direito
-assinatura = tk.Label(janela, text="Made by Luccas", font=("Arial", 10), fg="white", bg="black")
-assinatura.place(relx=1.0, rely=1.0, anchor="se")
+label = tk.Label(
+    janela,
+    font=("Arial", 25, "italic"),
+    fg="white",
+    bg="black"
+)
+label.place(relx=0.5, rely=0.5, anchor="center")
 
 # Função para mudar a frase do karaokê
 def mudar(frase):
     label.config(text=frase)
-    label.lift()  # garante que o texto fique acima do fundo
+
 
 # Lista de tempos e frases da música
 letra = [
