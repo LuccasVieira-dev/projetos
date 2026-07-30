@@ -8,11 +8,11 @@ from PIL import Image, ImageTk
 
 # Caminhos da música e do fundo
 if hasattr(sys, "_MEIPASS"):
-    musica_path = os.path.join(sys._MEIPASS, "Radiohead - Creep [XFkzRNyygfk].mp3")
-    fundo_path = os.path.join(sys._MEIPASS, "crepe.jpg")
+    musica_path = os.path.join(sys._MEIPASS, "Radiohead - Creep.mp3")
+    fundo_path = os.path.join(sys._MEIPASS, "bocchi.jpg")
 else:
-    musica_path = "Radiohead - Creep [XFkzRNyygfk].mp3"
-    fundo_path = "crepe.jpg"
+    musica_path = "Radiohead - Creep.mp3"
+    fundo_path = "bocchi.jpg"
 
 # Inicializar Pygame e tocar música
 pygame.mixer.init()
