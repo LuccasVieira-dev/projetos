@@ -11,9 +11,11 @@ from PIL import Image, ImageTk
 if hasattr(sys, "_MEIPASS"):
     musica_path = os.path.join(sys._MEIPASS, "Radiohead - Creep.mp3")
     fundo_path = os.path.join(sys._MEIPASS, "bocchi.jpg")
+    icone_path = os.path.join(sys._MEIPASS, "engrenagem.png")
 else:
     musica_path = "creeplyrics\\Radiohead - Creep.mp3"
     fundo_path = "creeplyrics\\bocchi.jpg"
+    icone_path = "creeplyrics\\engrenagem.png"
 
 
 # Inicializar Pygame e tocar música
@@ -27,6 +29,8 @@ janela = tk.Tk()
 janela.geometry("500x400")
 janela.resizable(False, False)
 janela.title("Creep - Radiohead")
+icone = tk.PhotoImage(file=icone_path)
+janela.iconphoto(True, icone)
 janela.eval('tk::PlaceWindow . center')
 
 
