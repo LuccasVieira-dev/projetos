@@ -1,5 +1,5 @@
-#começo de um autoclicker simples em python, por enquanto fiz apenas o estrutural, devo atualizar futuramente
-#esse foi um dos códigos mais limpo que eu ja fiz então se quiser utilizar por já deve funcionar corretamente
+#começo de um autoclicker simples em python, por enquanto fiz apenas o estrutural, espere atualizações futuras
+#esse foi um dos códigos mais limpos que eu ja fiz então se quiser utilizar por já, deve funcionar corretamente
 
 
 import tkinter as tk
@@ -9,39 +9,57 @@ import threading
 import pydirectinput
 
 
+###VARIÁVEIS/CONFIGS###
 
-###JANELA TKINTER###
+velocidade = 0.1
+ativo = threading.Event()
+pydirectinput.PAUSE = 0
+
+###TKINTER###
 
 janela = tk.Tk()
 janela.geometry("500x400")
 janela.resizable(False, False)
 janela.title("Simple Autoclicker by rato")
 janela.eval('tk::PlaceWindow . center')
+janela.config(bg="#000000")
 janela.protocol("WM_DELETE_WINDOW", janela.destroy)
+
 
 def definir_velocidade():
     global velocidade
-    velocidade = float(entrada.get())
 
-entrada = tk.Entry(janela, font=("Arial", 14))
-entrada.place(x=150, y=100, width=200, height=30)
+    if entrada_segundos.get() == "":
+        entrada_segundos.insert(0, "0")
+    if entrada_milissegundos.get() == "":
+        entrada_milissegundos.insert(0, "0")
 
-botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12))
-botao.place(x=200, y=140, width=100, height=35)
+    segundos = float(entrada_segundos.get())
+    milissegundos = float(entrada_milissegundos.get())
+    velocidade = segundos + (milissegundos / 1000)
+    marcador.config(text=f"Velocidade: {velocidade}s")
 
-vel_texto = tk.Label(janela, text="coloque aqui a velocidade do autoclicker:", font=("Arial", 12))
-vel_texto.place(x=100, y=70)
+entrada_segundos = tk.Entry(janela, font=("Arial", 14), bg="#000000", fg="white", insertbackground="white")
+entrada_segundos.place(x=125, y=160, width=100, height=30)
+entrada_segundos.insert(0, "0")
+
+entrada_milissegundos = tk.Entry(janela, font=("Arial", 14), bg="#000000", fg="white", insertbackground="white")
+entrada_milissegundos.place(x=275, y=160, width=100, height=30)
+entrada_milissegundos.insert(0, "100")
+
+botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12), bg="#000000", fg="white", activebackground="gray")
+botao.place(x=200, y=200, width=100, height=35)
+
+vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12), bg="#000000", fg="white")
+vel_texto.place(x=100, y=130)
+
+vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12), bg="#000000", fg="white")
+vel_texto_ms.place(x=250, y=130)
+
+marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12), bg="#000000", fg="white")
+marcador.place(x=100, y=240)
 
 ###AUTOCLICKER###
-
-velocidade = 0.001
-
-ativo = threading.Event()
-
-
-print("F7 = ligar")
-print("F8 = desligar")
-
 
 def ligar():
     ativo.set()
@@ -62,7 +80,7 @@ def clicking():
 
 keyboard.add_hotkey("f7", ligar)
 keyboard.add_hotkey("f8", desligar)
-
+keyboard.add_hotkey("enter", definir_velocidade)
 
 thread_click = threading.Thread(target=clicking, daemon=True)
 thread_click.start()
