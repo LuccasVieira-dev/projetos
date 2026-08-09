@@ -22,7 +22,6 @@ janela.geometry("500x400")
 janela.resizable(False, False)
 janela.title("Simple Autoclicker by rato")
 janela.eval('tk::PlaceWindow . center')
-janela.config(bg="#000000")
 janela.protocol("WM_DELETE_WINDOW", janela.destroy)
 
 
@@ -39,24 +38,24 @@ def definir_velocidade():
     velocidade = segundos + (milissegundos / 1000)
     marcador.config(text=f"Velocidade: {velocidade}s")
 
-entrada_segundos = tk.Entry(janela, font=("Arial", 14), bg="#000000", fg="white", insertbackground="white")
+entrada_segundos = tk.Entry(janela, font=("Arial", 14))
 entrada_segundos.place(x=125, y=160, width=100, height=30)
 entrada_segundos.insert(0, "0")
 
-entrada_milissegundos = tk.Entry(janela, font=("Arial", 14), bg="#000000", fg="white", insertbackground="white")
+entrada_milissegundos = tk.Entry(janela, font=("Arial", 14))
 entrada_milissegundos.place(x=275, y=160, width=100, height=30)
 entrada_milissegundos.insert(0, "100")
 
-botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12), bg="#000000", fg="white", activebackground="gray")
+botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12))
 botao.place(x=200, y=200, width=100, height=35)
 
-vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12), bg="#000000", fg="white")
+vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12))
 vel_texto.place(x=100, y=130)
 
-vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12), bg="#000000", fg="white")
+vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12))
 vel_texto_ms.place(x=250, y=130)
 
-marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12), bg="#000000", fg="white")
+marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12))
 marcador.place(x=100, y=240)
 
 ###AUTOCLICKER###
