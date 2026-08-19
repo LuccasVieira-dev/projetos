@@ -2,18 +2,31 @@
 #esse foi um dos códigos mais limpos que eu ja fiz então se quiser utilizar por já, deve funcionar corretamente
 
 
+import sys
 import tkinter as tk
 import time
 import keyboard
 import threading
 import pydirectinput
+from PIL import Image, ImageTk
+from pathlib import Path
 
 
-###VARIÁVEIS/CONFIGS###
+###PATHS###
+
+try:
+    fundo_path = Path(sys._MEIPASS)
+
+except AttributeError:
+    fundo_path = (r"C:\Users\lucca\Downloads\nigga.jpg")
+
+
+###VARIÁVEIS###
 
 velocidade = 0.1
 ativo = threading.Event()
 pydirectinput.PAUSE = 0
+
 
 ###TKINTER###
 
@@ -23,6 +36,14 @@ janela.resizable(False, False)
 janela.title("Simple Autoclicker by rato")
 janela.eval('tk::PlaceWindow . center')
 janela.protocol("WM_DELETE_WINDOW", janela.destroy)
+
+
+img = Image.open(fundo_path).resize((500, 400))
+imagem_fundo = ImageTk.PhotoImage(img)
+
+label_fundo = tk.Label(janela, image=imagem_fundo)
+label_fundo.place(x=0, y=0, relwidth=1, relheight=1)
+label_fundo.lower()
 
 
 def definir_velocidade():
@@ -38,25 +59,29 @@ def definir_velocidade():
     velocidade = segundos + (milissegundos / 1000)
     marcador.config(text=f"Velocidade: {velocidade}s")
 
-entrada_segundos = tk.Entry(janela, font=("Arial", 14))
+entrada_segundos = tk.Entry(janela, font=("Arial", 14), bg="#272727", fg="white", insertbackground="white")
 entrada_segundos.place(x=125, y=160, width=100, height=30)
 entrada_segundos.insert(0, "0")
 
-entrada_milissegundos = tk.Entry(janela, font=("Arial", 14))
+entrada_milissegundos = tk.Entry(janela, font=("Arial", 14), bg="#272727", fg="white", insertbackground="white")
 entrada_milissegundos.place(x=275, y=160, width=100, height=30)
 entrada_milissegundos.insert(0, "100")
 
-botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12))
+botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12), bg="#272727", fg="white")
 botao.place(x=200, y=200, width=100, height=35)
 
-vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12))
+vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12), bg="#272727", fg="white")
 vel_texto.place(x=100, y=130)
 
-vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12))
+vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12), bg="#272727", fg="white")
 vel_texto_ms.place(x=250, y=130)
 
-marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12))
-marcador.place(x=100, y=240)
+marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12), bg="#272727", fg="white")
+marcador.place(x=30, y=350)
+
+tuto = tk.Label(janela, text="F7 para ligar, F8 para desligar, ENTER para aplicar a velocidade.", font=("Arial", 10), bg="#272727", fg="white")
+tuto.place(x=60, y=80)
+
 
 ###AUTOCLICKER###
 
