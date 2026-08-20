@@ -1,5 +1,5 @@
-#começo de um autoclicker simples em python, por enquanto fiz apenas o estrutural, espere atualizações futuras
-#esse foi um dos códigos mais limpos que eu ja fiz então se quiser utilizar por já, deve funcionar corretamente
+#autoclicker simples em python, feio, mas completamente funcional
+#um dos códigos mais limpos que eu já fiz
 
 
 import sys
