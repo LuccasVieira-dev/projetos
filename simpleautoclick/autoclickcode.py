@@ -15,10 +15,10 @@ from pathlib import Path
 ###PATHS###
 
 try:
-    fundo_path = Path(sys._MEIPASS)
+    fundo_path = Path(sys._MEIPASS) / "gamingnigga.jpg"
 
 except AttributeError:
-    fundo_path = (r"C:\Users\lucca\Downloads\nigga.jpg")
+    fundo_path = Path(__file__).parent / "gamingnigga.jpg"
 
 
 ###VARIÁVEIS###
@@ -28,7 +28,7 @@ ativo = threading.Event()
 pydirectinput.PAUSE = 0
 
 
-###TKINTER###
+###TKINTER E ESTRUTURA###
 
 janela = tk.Tk()
 janela.geometry("500x400")
@@ -59,31 +59,92 @@ def definir_velocidade():
     velocidade = segundos + (milissegundos / 1000)
     marcador.config(text=f"Velocidade: {velocidade}s")
 
-entrada_segundos = tk.Entry(janela, font=("Arial", 14), bg="#272727", fg="white", insertbackground="white")
+
+def apenas_numeros(valor):
+    if valor.isdigit() or valor == "":
+        return True
+    else: 
+        return False
+
+
+validacao = janela.register(apenas_numeros)
+
+
+entrada_segundos = tk.Entry(
+    janela,
+    font=("Arial", 14), 
+    bg="#272727",
+    fg="white", 
+    insertbackground="white",
+    validate="key",
+    validatecommand=(validacao, "%P"),
+    bd=0
+)
 entrada_segundos.place(x=125, y=160, width=100, height=30)
 entrada_segundos.insert(0, "0")
 
-entrada_milissegundos = tk.Entry(janela, font=("Arial", 14), bg="#272727", fg="white", insertbackground="white")
+entrada_milissegundos = tk.Entry(
+    janela,
+    font=("Arial", 14), 
+    bg="#272727",
+    fg="white", 
+    insertbackground="white",
+    validate="key",
+    validatecommand=(validacao, "%P"),
+    bd=0
+)
 entrada_milissegundos.place(x=275, y=160, width=100, height=30)
 entrada_milissegundos.insert(0, "100")
 
-botao = tk.Button(janela, text="Aplicar", command=definir_velocidade, font=("Arial", 12), bg="#272727", fg="white")
+botao = tk.Button(
+    janela, 
+    text="Aplicar", 
+    command=definir_velocidade, 
+    font=("Arial", 12), 
+    bg="#272727", 
+    fg="white",
+    bd=0,
+)
 botao.place(x=200, y=200, width=100, height=35)
 
-vel_texto = tk.Label(janela, text="segundos:", font=("Arial", 12), bg="#272727", fg="white")
+vel_texto = tk.Label(
+    janela, 
+    text="segundos:", 
+    font=("Arial", 12), 
+    bg="#272727", 
+    fg="white"
+)
 vel_texto.place(x=100, y=130)
 
-vel_texto_ms = tk.Label(janela, text="milissegundos:", font=("Arial", 12), bg="#272727", fg="white")
+vel_texto_ms = tk.Label(
+    janela, 
+    text="milissegundos:", 
+    font=("Arial", 12), 
+    bg="#272727", 
+    fg="white"
+)
 vel_texto_ms.place(x=250, y=130)
 
-marcador = tk.Label(janela, text=f"Velocidade: {velocidade}s", font=("Arial", 12), bg="#272727", fg="white")
+marcador = tk.Label(
+    janela,
+    text=f"Velocidade: {velocidade}s", 
+    font=("Arial", 12), 
+    bg="#272727", 
+    fg="white"
+)
 marcador.place(x=30, y=350)
 
-tuto = tk.Label(janela, text="F7 para ligar, F8 para desligar, ENTER para aplicar a velocidade.", font=("Arial", 10), bg="#272727", fg="white")
+tuto = tk.Label(
+    janela, 
+    text="F7 para ligar, F8 para desligar, ENTER para aplicar a velocidade.", 
+    font=("Arial", 10), 
+    bg="#272727", 
+    fg="white"
+)
 tuto.place(x=60, y=80)
 
 
-###AUTOCLICKER###
+###SEILA###
 
 def ligar():
     ativo.set()

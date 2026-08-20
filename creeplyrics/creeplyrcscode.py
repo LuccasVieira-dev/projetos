@@ -5,17 +5,19 @@ import os
 import tkinter as tk
 import pygame
 from PIL import Image, ImageTk
+from pathlib import Path
+
 
 
 # Caminhos da música e do fundo
-if hasattr(sys, "_MEIPASS"):
-    musica_path = os.path.join(sys._MEIPASS, "Radiohead - Creep.mp3")
-    fundo_path = os.path.join(sys._MEIPASS, "bocchi.jpg")
-    icone_path = os.path.join(sys._MEIPASS, "engrenagem.png")
-else:
-    musica_path = "creeplyrics\\Radiohead - Creep.mp3"
-    fundo_path = "creeplyrics\\bocchi.jpg"
-    icone_path = "creeplyrics\\engrenagem.png"
+try:
+    musica_path = Path(sys._MEIPASS) / "Radiohead - Creep.mp3"
+    fundo_path = Path(sys._MEIPASS) / "bocchi.jpg"
+    icone_path = Path(sys._MEIPASS) / "engrenagem.png"
+except AttributeError:
+    musica_path = Path(__file__).parent / "Radiohead - Creep.mp3"
+    fundo_path = Path(__file__).parent / "bocchi.jpg"
+    icone_path = Path(__file__).parent / "engrenagem.png"
 
 
 # Inicializar Pygame e tocar música
