@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 #código simples, mas antigo e todo fudido que roda Creep do Radiohead e mostra a letra
-=======
-##código simples, mas antigo e todo fudido que roda Creep do Radiohead e mostra a letra
->>>>>>> 2688bf79c3e3cb385552aa0034f3ad764bdb8f04
+
 
 import sys
 import os
