@@ -1,4 +1,4 @@
-# código simples que roda Creep do Radiohead e mostra a letra
+#código simples, mas antigo e todo fudido que roda Creep do Radiohead e mostra a letra
 
 import sys
 import os
