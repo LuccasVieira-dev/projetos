@@ -16,10 +16,11 @@ from pathlib import Path
 
 try:
     fundo_path = Path(sys._MEIPASS) / "gamingnigga.jpg"
+    ico_path = Path(sys._MEIPASS) / "mouseico.ico"
 
 except AttributeError:
     fundo_path = Path(__file__).parent / "gamingnigga.jpg"
-
+    ico_path = Path(__file__).parent / "mouseico.ico"
 
 ###VARIÁVEIS###
 
@@ -36,6 +37,7 @@ janela.resizable(False, False)
 janela.title("Simple Autoclicker by rato")
 janela.eval('tk::PlaceWindow . center')
 janela.protocol("WM_DELETE_WINDOW", janela.destroy)
+janela.iconbitmap(ico_path)
 
 
 img = Image.open(fundo_path).resize((500, 400))
