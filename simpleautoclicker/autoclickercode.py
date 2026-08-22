@@ -10,6 +10,7 @@ import threading
 import pydirectinput
 from PIL import Image, ImageTk
 from pathlib import Path
+from win11toast import toast
 
 
 ###PATHS###
@@ -21,6 +22,7 @@ try:
 except AttributeError:
     fundo_path = Path(__file__).parent / "gamingnigga.jpg"
     ico_path = Path(__file__).parent / "mouseico.ico"
+
 
 ###VARIÁVEIS###
 
@@ -150,12 +152,22 @@ tuto.place(x=60, y=80)
 
 def ligar():
     ativo.set()
-    print("ligado")
+    threading.Thread(
+        target=toast,
+        args=("Autoclicker", "Ligado"), 
+        kwargs={"tag": "status", 
+        "app_id": "Simple Autoclicker",
+        "icon": str(ico_path)}, daemon=True).start()
 
 
 def desligar():
     ativo.clear()
-    print("desligado")
+    threading.Thread(
+        target=toast, 
+        args=("Autoclicker", "Desligado"), 
+        kwargs={"tag": "status", 
+        "app_id": "Simple Autoclicker", 
+        "icon": str(ico_path)}, daemon=True).start()
 
 
 def clicking():
