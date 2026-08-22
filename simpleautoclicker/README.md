@@ -1,0 +1,1 @@
+se você baixar a pasta e executar com o python deve funcionar, mas tem o .exe em releases
